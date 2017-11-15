@@ -1072,6 +1072,9 @@ class LanguageClient:
                 # ignore insertText
                 # TODO: Not fully conforming to LSP
                 match['word'] = item['textEdit']['newText']
+
+            if languageId == "ocaml":
+                match['menu'] = ' '.join(match['menu'].split('\n'))
             matches.append(match)
 
         state["nvim"].call('cm#complete', info['name'], ctx,
